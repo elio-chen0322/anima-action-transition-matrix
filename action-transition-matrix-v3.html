@@ -1179,6 +1179,9 @@ html&gt;body{padding:0}&lt;/style&gt;
     #anima-transition-explorer .group[data-pose=&quot;4&quot;] .target[aria-pressed=&quot;true&quot;] { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--background) 65%, var(--purple) 35%); }
     #anima-transition-explorer .target strong { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
     #anima-transition-explorer .target .action-title { min-width: 0; color: var(--foreground); font-size: 12px; white-space: normal; }
+    #anima-transition-explorer .target.target-compact { padding-inline: 9px; }
+    #anima-transition-explorer .target.target-compact strong { gap: 4px; }
+    #anima-transition-explorer .target.target-compact .action-title { font-size: 11px; letter-spacing: -0.1px; white-space: nowrap; }
     #anima-transition-explorer .target .pose-path { display: block; margin-top: 2px; color: var(--muted-foreground); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     #anima-transition-explorer .target em { display: inline-flex; align-items: center; gap: 5px; color: var(--foreground); font-size: 11px; font-style: normal; font-weight: 400; white-space: nowrap; }
     #anima-transition-explorer .status-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
@@ -1242,8 +1245,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         { id:&#x27;A6&#x27;, name:&#x27;熟睡&#x27;, from:4, to:4, loop:true },
         { id:&#x27;A7&#x27;, name:&#x27;舔毛&#x27;, from:3, to:3, loop:true },
         { id:&#x27;A8&#x27;, name:&#x27;洗脸&#x27;, from:2, to:2, loop:true },
-        { id:&#x27;A9&#x27;, name:&#x27;舔毛 ｜ 抖毛、打哈欠&#x27;, from:1, to:1, loop:false },
-        { id:&#x27;A10&#x27;, name:&#x27;弓背炸毛 ｜ 害怕、尾巴夹紧&#x27;, from:2, to:2, loop:false },
+        { id:&#x27;A9&#x27;, name:&#x27;舔毛/抖毛、打哈欠&#x27;, from:1, to:1, loop:false },
+        { id:&#x27;A10&#x27;, name:&#x27;弓背炸毛/害怕、尾巴夹紧&#x27;, from:2, to:2, loop:false },
         { id:&#x27;A11&#x27;, name:&#x27;进食吃粮&#x27;, from:2, to:2, loop:true },
         { id:&#x27;A12&#x27;, name:&#x27;饮水&#x27;, from:2, to:2, loop:true },
         { id:&#x27;A13&#x27;, name:&#x27;摸头反馈&#x27;, from:2, to:2, loop:true },
@@ -1302,7 +1305,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             const value = routeValue(source, action);
             const button = document.createElement(&#x27;button&#x27;);
             button.type = &#x27;button&#x27;;
-            button.className = &#x27;target&#x27;;
+            button.className = `target${action.id === &#x27;A10&#x27; ? &#x27; target-compact&#x27; : &#x27;&#x27;}`;
             button.dataset.target = action.id;
             button.dataset.kind = routeKind(value);
             button.setAttribute(&#x27;aria-pressed&#x27;, String(action.id === selectedTarget));
